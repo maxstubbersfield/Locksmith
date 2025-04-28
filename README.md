@@ -8,7 +8,7 @@ Supports **user password**, **owner password**, and control over PDF actions lik
 
 Supports both iOS & Android
 
-Uses [PdfBox](https://github.com/TomRoush/PdfBox-Android) on Android
+Uses [PdfBox](https://github.com/TomRoush/PdfBox-Android) on Android <br/>
 Apple PdfKit Apis for iOS
 
 ---
