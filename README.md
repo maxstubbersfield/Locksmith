@@ -6,7 +6,10 @@
 A Flutter plugin to **encrypt**, **decrypt**, and **manage PDF security** with **fine-grained permissions**.  
 Supports **user password**, **owner password**, and control over PDF actions like **printing**, **copying**, **modifying**, **annotating**, and **filling forms**.
 
-**iOS support is coming soon**.
+Supports both iOS & Android
+
+Uses [PdfBox](https://github.com/TomRoush/PdfBox-Android) on Android
+Apple PdfKit Apis for iOS
 
 ---
 
