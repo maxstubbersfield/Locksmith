@@ -55,7 +55,7 @@ await AresDefenceLabsLocksmithPdf.protectPdf(
 When opening the document you should see something like this:
 <br/>
 <p align="center">
-    <a href="./passcode_preview.png"><img src="./passcode_preview.png" align="center" width=450/></a>
+    <a href="https://github.com/Ares-Defence-Labs/Locksmith?tab=readme-ov-file"><img src="https://github.com/Ares-Defence-Labs/Locksmith/blob/main/passcode_preview.png" align="center" width=450/></a>
 </p>
 
 
