@@ -52,6 +52,13 @@ await AresDefenceLabsLocksmithPdf.protectPdf(
 );
 ```
 
+When opening the document you should see something like this:
+<br/>
+<p align="center">
+    <a href="./passcode_preview.png"><img src="./passcode_preview.png" align="center" width=450/></a>
+</p>
+
+
 You can also adjust the permissions of the document, and adding a owners passcode onto it too (this allows anyone who has decrypted the PDF to be able to adjust the permissions).
 
 ```dart
