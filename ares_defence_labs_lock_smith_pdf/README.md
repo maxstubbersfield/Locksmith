@@ -6,7 +6,10 @@
 A Flutter plugin to **encrypt**, **decrypt**, and **manage PDF security** with **fine-grained permissions**.  
 Supports **user password**, **owner password**, and control over PDF actions like **printing**, **copying**, **modifying**, **annotating**, and **filling forms**.
 
-**iOS support is coming soon**.
+Supports both iOS & Android
+
+Uses [PdfBox](https://github.com/TomRoush/PdfBox-Android) on Android <br/><br/>
+Uses Apple PdfKit Apis for iOS
 
 ---
 
@@ -51,13 +54,6 @@ await AresDefenceLabsLocksmithPdf.protectPdf(
   password: 'SuperSecretPassword123',
 );
 ```
-
-When opening the document you should see something like this:
-<br/>
-<p align="center">
-    <a href="https://github.com/Ares-Defence-Labs/Locksmith?tab=readme-ov-file"><img src="https://github.com/Ares-Defence-Labs/Locksmith/blob/main/passcode_preview.png" align="center" width=450/></a>
-</p>
-
 
 You can also adjust the permissions of the document, and adding a owners passcode onto it too (this allows anyone who has decrypted the PDF to be able to adjust the permissions).
 

@@ -1,6 +1,6 @@
 name: ares_defence_labs_lock_smith_pdf
 description: A Flutter plugin for password-protecting PDFs with 256-bit encryption. Add a password for encryption, permissions management and decrypting a PDF
-version: 0.0.4
+version: 0.0.7
 homepage: https://github.com/Ares-Defence-Labs/Locksmith
 repository: https://github.com/Ares-Defence-Labs/Locksmith
 
@@ -14,8 +14,8 @@ flutter:
       android:
         package: com.aresdefencelabs.locksmith_pdf
         pluginClass: LocksmithPdfPlugin
-      # ios:
-      #   pluginClass: LocksmithPdfPlugin
+      ios:
+        pluginClass: LocksmithPdfPlugin
 
 dependencies:
   flutter:
