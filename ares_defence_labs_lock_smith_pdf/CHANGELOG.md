@@ -1,3 +1,5 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- Initial release.
+- Supports Android for encrypting, decrypting, checking PDF encryption, and managing PDF permissions.
+- iOS support planned.
