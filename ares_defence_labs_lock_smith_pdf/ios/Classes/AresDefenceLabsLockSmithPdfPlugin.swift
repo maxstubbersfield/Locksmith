@@ -3,7 +3,6 @@ import UIKit
 import PDFKit
 import CoreGraphics
 
-@available(iOS 16.0, *)
 public class LocksmithPdfPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "locksmith_pdf", binaryMessenger: registrar.messenger())
@@ -144,41 +143,40 @@ public class LocksmithPdfPlugin: NSObject, FlutterPlugin {
         let inputUrl = URL(fileURLWithPath: inputPath)
         let outputUrl = URL(fileURLWithPath: outputPath)
 
-        guard let document = PDFDocument(url: inputUrl) else {
+        guard let inputDoc = CGPDFDocument(inputUrl as CFURL) else {
             result(FlutterError(code: "LOAD_FAILED", message: "Could not load PDF", details: nil))
             return
         }
 
-        if document.isEncrypted {
-            result(FlutterError(code: "ALREADY_ENCRYPTED", message: "Input PDF is already encrypted. Cannot re-encrypt.", details: nil))
-            return
-        }
+        let pageCount = inputDoc.numberOfPages
 
-        guard document.pageCount > 0 else {
+        guard pageCount > 0 else {
             result(FlutterError(code: "INVALID_PDF", message: "PDF document has no pages.", details: nil))
             return
         }
 
-        let options: [String: Any] = [
-            kCGPDFContextUserPassword as String: userPassword,
-            kCGPDFContextOwnerPassword as String: ownerPassword,
-            kCGPDFContextEncryptionKeyLength as String: 256,
-            kCGPDFContextAllowsPrinting as String: permissions.contains("print"),
-            kCGPDFContextAllowsCopying as String: permissions.contains("copy"),
-            kCGPDFContextAllowsEditing as String: permissions.contains("modify"),
-            kCGPDFContextAllowsCommenting as String: permissions.contains("annotate"),
-            kCGPDFContextAllowsFillingForms as String: permissions.contains("fillForms")
+        let options: [CFString: Any] = [
+            kCGPDFContextUserPassword: userPassword,
+            kCGPDFContextOwnerPassword: ownerPassword,
+            kCGPDFContextEncryptionKeyLength: 128,
+            kCGPDFContextAllowsPrinting: permissions.contains("print"),
+            kCGPDFContextAllowsCopying: permissions.contains("copy"),
         ]
 
-        if let protectedData = document.dataRepresentation(options: options) {
-            do {
-                try protectedData.write(to: outputUrl)
-                result(true)
-            } catch {
-                result(FlutterError(code: "WRITE_FAILED", message: "Failed to save encrypted PDF", details: error.localizedDescription))
-            }
-        } else {
-            result(FlutterError(code: "ENCRYPTION_FAILED", message: "Failed to generate encrypted PDF data.", details: nil))
+        guard let consumer = CGDataConsumer(url: outputUrl as CFURL), let context = CGContext(consumer: consumer, mediaBox: nil, options as CFDictionary) else {
+            result(FlutterError(code: "CONTEXT_CREATION_FAILED", message: "Failed to create PDF context", details: nil))
+            return
         }
+
+        for pageNumber in 0..<pageCount {
+            guard let page = inputDoc.page(at: pageNumber) else { continue }
+            var mediaBox = page.getBoxRect(.mediaBox)
+            context.beginPage(mediaBox: &mediaBox)
+            context.drawPDFPage(page)
+            context.endPage()
+        }
+
+        context.closePDF()
+        result(true)
     }
 }
