@@ -1,11 +1,8 @@
 import 'dart:io';
 
+import 'package:ares_defence_labs_lock_smith_pdf/ares_defence_labs_lock_smith_pdf.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:ares_defence_labs_lock_smith_pdf/ares_defence_labs_lock_smith_pdf.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -40,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             MaterialButton(
-              child: Text("Encrypt PDF"),
+              child: const Text("Encrypt PDF"),
               onPressed: () async {
                 var pickedFile = await FilePicker.platform.pickFiles();
                 if (pickedFile != null) {
@@ -51,7 +48,7 @@ class _MyAppState extends State<MyApp> {
                     outputPath: output,
                     password: "secretPassword123",
                   ).then((e) async {
-                    print(
+                    debugPrint(
                       "IS ENCRYPTED : ${await AresDefenceLabsLocksmithPdf.isPdfEncrypted(inputPath: output)}",
                     );
                     final params = ShareParams(
@@ -59,13 +56,13 @@ class _MyAppState extends State<MyApp> {
                       files: [XFile(output)],
                     );
 
-                    final result = await SharePlus.instance.share(params);
+                    await SharePlus.instance.share(params);
                   });
                 }
               },
             ),
             MaterialButton(
-              child: Text("Encrypt PDF with Permissions"),
+              child: const Text("Encrypt PDF with Permissions"),
               onPressed: () async {
                 var pickedFile = await FilePicker.platform.pickFiles();
                 if (pickedFile != null) {
@@ -86,13 +83,13 @@ class _MyAppState extends State<MyApp> {
                       files: [XFile(output)],
                     );
 
-                    final result = await SharePlus.instance.share(params);
+                    await SharePlus.instance.share(params);
                   });
                 }
               },
             ),
             MaterialButton(
-              child: Text("Decrypt PDF"),
+              child: const Text("Decrypt PDF"),
               onPressed: () async {
                 var pickedFile = await FilePicker.platform.pickFiles();
                 if (pickedFile != null) {
@@ -108,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                       files: [XFile(output)],
                     );
 
-                    final result = await SharePlus.instance.share(params);
+                    await SharePlus.instance.share(params);
                   });
                 }
               },

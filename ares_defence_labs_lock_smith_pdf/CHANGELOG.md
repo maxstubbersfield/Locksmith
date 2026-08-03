@@ -1,3 +1,8 @@
+## Unreleased
+
+- Add Swift Package Manager support for the iOS plugin.
+- Mark the Flutter package as private to prevent accidental publication.
+
 ## 0.0.1
 
 - Initial release.
