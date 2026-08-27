@@ -39,12 +39,12 @@ class _MyAppState extends State<MyApp> {
             MaterialButton(
               child: const Text("Encrypt PDF"),
               onPressed: () async {
-                var pickedFile = await FilePicker.platform.pickFiles();
+                final pickedFile = await FilePicker.pickFile();
                 if (pickedFile != null) {
-                  var output = await getPdfFilePath("random_test");
+                  final output = await getPdfFilePath("random_test");
 
                   await AresDefenceLabsLocksmithPdf.protectPdf(
-                    inputPath: pickedFile.files.first.path!,
+                    inputPath: pickedFile.path!,
                     outputPath: output,
                     password: "secretPassword123",
                   ).then((e) async {
@@ -64,12 +64,12 @@ class _MyAppState extends State<MyApp> {
             MaterialButton(
               child: const Text("Encrypt PDF with Permissions"),
               onPressed: () async {
-                var pickedFile = await FilePicker.platform.pickFiles();
+                final pickedFile = await FilePicker.pickFile();
                 if (pickedFile != null) {
-                  var output = await getPdfFilePath("random_test");
+                  final output = await getPdfFilePath("random_test");
 
                   await AresDefenceLabsLocksmithPdf.protectPdfWithPermissions(
-                    inputPath: pickedFile.files.first.path!,
+                    inputPath: pickedFile.path!,
                     outputPath: output,
                     userPassword: "secretPassword123",
                     ownerPassword: "permissionPassword",
@@ -91,12 +91,12 @@ class _MyAppState extends State<MyApp> {
             MaterialButton(
               child: const Text("Decrypt PDF"),
               onPressed: () async {
-                var pickedFile = await FilePicker.platform.pickFiles();
+                final pickedFile = await FilePicker.pickFile();
                 if (pickedFile != null) {
-                  var output = await getPdfFilePath("random_test");
+                  final output = await getPdfFilePath("random_test");
 
                   await AresDefenceLabsLocksmithPdf.decryptPdf(
-                    inputPath: pickedFile.files.first.path!,
+                    inputPath: pickedFile.path!,
                     outputPath: output,
                     password: "",
                   ).then((e) async {
