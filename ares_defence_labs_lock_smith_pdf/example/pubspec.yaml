@@ -6,7 +6,8 @@ version: 1.0.0+1
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -17,9 +18,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  file_picker: ^10.1.2
-  share_plus: ^11.0.0
-  path_provider: ^2.1.5
+  file_picker: ^12.1.1
+  share_plus: ^13.3.0
+  path_provider: ^2.1.6
 
   ares_defence_labs_lock_smith_pdf:
     # When depending on this package from a real application you should use:
